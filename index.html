@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scythe</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <style>
+    body {
+      margin: 0;
+    }
+    #map {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    var map = L.map('map', {
+      attributionControl: false,
+      maxBounds: L.latLngBounds(
+        { lat: -28.998, lng: -104.589 },
+        { lat: -82.517, lng: 83.583 }
+      ),
+      maxBoundsViscosity: 0.75,
+    }).setView({ lat: -66.337, lng: -16.523 }, 4)
+    L.tileLayer('https://scythe-map-tiles.s3.amazonaws.com/{z}/{x}/{y}.png', {
+      tms: true,
+      minZoom: 2,
+      maxZoom: 6,
+      noWrap: true,
+    }).addTo(map)
+    map.on('click', function (event) {
+      console.log(event)
+    })
+  </script>
+</body>
+</html>
